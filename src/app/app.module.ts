@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataBase } from './in-memory-database';
 
@@ -14,6 +15,8 @@ import { InMemoryDataBase } from './in-memory-database';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataBase),
   ],
   providers: [],
