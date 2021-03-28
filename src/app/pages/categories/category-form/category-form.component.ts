@@ -126,7 +126,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private actionForError(error): void {
-    toastr.console.error('Ocorreu um erro ao processar a sua solicitação.!');
+    toastr.error('Ocorreu um erro ao processar a sua solicitação.!');
     this.submittingForm = false;
 
     if (error.status === 422) {
