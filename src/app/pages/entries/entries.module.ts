@@ -7,6 +7,9 @@ import { EntryListComponent } from './entry-list/entry-list.component';
 import { RouterModule } from '@angular/router';
 import { EntryFormComponent } from './entry-form/entry-form.component';
 
+import { CalendarModule } from "primeng/calendar";
+import { IMaskModule } from 'angular-imask';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { EntryFormComponent } from './entry-form/entry-form.component';
     CommonModule,
     RouterModule,
     EntriesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CalendarModule,
+    IMaskModule,
   ]
 })
 export class EntriesModule { }
