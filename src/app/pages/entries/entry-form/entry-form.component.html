@@ -1,7 +1,7 @@
 <nav class="mb-5">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-    <li class="breadcrumb-item"><a routerLink="/categories">Lançamentos</a></li>
+    <li class="breadcrumb-item"><a routerLink="/entries">Lançamentos</a></li>
     <li class="breadcrumb-item active">{{pageTitle}}</li>
   </ol>
 </nav>
@@ -90,7 +90,6 @@
           <label for="type">Categoria</label>
           <select name="categoryId" id="categoryId" formControlName="categoryId" class="form-control">
             <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-            <option value="1">Categoria 2</option>
           </select>
           <div class="text-danger" *ngIf="f.categoryId.invalid && f.categoryId.touched">
             <div *ngIf="f.categoryId.errors.required">dado obrigatório</div>

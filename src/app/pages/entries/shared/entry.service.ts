@@ -5,6 +5,7 @@ import { map, catchError, flatMap, retry } from 'rxjs/operators';
 
 import { Entry } from './entry.model';
 import { element } from 'protractor';
+import { CategoryService } from '../../categories/shared/category.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,10 @@ import { element } from 'protractor';
 export class EntryService {
   private apiPath: string = 'api/entries';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private categoryService: CategoryService
+  ) {}
 
   getAll(): Observable<Entry[]> {
     return this.http
@@ -29,17 +33,31 @@ export class EntryService {
   }
 
   create(entry: Entry): Observable<Entry> {
-    return this.http
-      .post(this.apiPath, entry)
-      .pipe(catchError(this.handleError), map(this.jsonDataToEntry));
+    return this.categoryService.getById(entry.categoryId).pipe(
+      flatMap((category) => {
+        entry.category = category;
+
+        // category
+        return this.http
+          .post(this.apiPath, entry)
+          .pipe(catchError(this.handleError), map(this.jsonDataToEntry));
+      })
+    );
   }
 
   update(entry: Entry): Observable<Entry> {
     const url = `${this.apiPath}/${entry.id}`;
 
-    return this.http.put('asdAAS', entry).pipe(
-      catchError(this.handleError),
-      map(() => entry)
+    return this.categoryService.getById(entry.categoryId).pipe(
+      flatMap((category) => {
+        entry.category = category;
+
+        // update
+        return this.http.put(url, entry).pipe(
+          catchError(this.handleError),
+          map(() => entry)
+        );
+      })
     );
   }
 
@@ -55,7 +73,7 @@ export class EntryService {
   // PRIVATE METHODS
   private jsonDataToEntries(jsonData: any[]): Entry[] {
     const entries: Entry[] = [];
-    jsonData.forEach(element => {
+    jsonData.forEach((element) => {
       const entry = Object.assign(new Entry(), element);
       entries.push(entry);
     });
