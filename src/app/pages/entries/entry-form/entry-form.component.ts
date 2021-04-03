@@ -141,7 +141,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       id: [null],
       name: [null, [Validators.required, Validators.minLength(2)]],
       description: [null],
-      type: [null, [Validators.required]],
+      type: ['expense', [Validators.required]],
       amount: [null, [Validators.required]],
       date: [null, [Validators.required]],
       paid: [true, [Validators.required]],
@@ -219,7 +219,4 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       ];
     }
   }
-  compareFn(option1,option2): boolean {
-    return option1.type=option2.type;
-}
 }
