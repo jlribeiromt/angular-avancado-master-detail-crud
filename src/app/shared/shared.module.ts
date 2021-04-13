@@ -12,7 +12,7 @@ const routes: Routes = [];
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
+    RouterModule,
   ],
   exports: [
     // shared modules
