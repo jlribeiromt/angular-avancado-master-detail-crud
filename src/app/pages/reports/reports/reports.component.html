@@ -53,7 +53,7 @@
     </div>
     <div class="card-body">
       <h3 class="card-title">
-        R$ 1500,00
+        {{revenueTotal}}
       </h3>
     </div>
   </div>
@@ -63,7 +63,7 @@
     </div>
     <div class="card-body">
       <h3 class="card-title">
-        R$ 500,00
+        {{expenseTotal}}
       </h3>
     </div>
   </div>
@@ -73,7 +73,7 @@
     </div>
     <div class="card-body">
       <h3 class="card-title">
-        R$ 1000,00
+        {{balance}}
       </h3>
     </div>
   </div>
@@ -82,8 +82,10 @@
 <div class="row mt-5 mb-4">
   <div class="col-md-6">
     GRAFICO DE RECEITAS
+    <p-chart type="bar" [data]="revenueChartData" [options]="chartOPtions"></p-chart>
   </div>
   <div class="col-md-6">
     GRAFICO DE DESPESAS
+    <p-chart type="bar" [data]="expenseChartData" [options]="chartOPtions"></p-chart>
   </div>
 </div>
